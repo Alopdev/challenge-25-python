@@ -34,30 +34,61 @@ Elige una opción:
 list_incidencias = []
 list_resueltas =[]
 incidencia = {}
-
+salir = False
 #Pedir que quiere hacer el usuario y que escoja una opción
-opcion= input("""¡Buenas!
-    ¿Que quieres hacer?
-    1. Añadir incidencia
-    2. Ver incidencias
-    3. Resolver una incidencia
-    4. Ver incidencias resueltas
-    5. Salir
-    """)
+
 
 #función para crear un diccionario de una incidencia
-def add_incidencia(description, num_hab, estado):
-    incidencia ={"Descripción": description, "Habitación": num_hab, "Estado":estado}
-    #return print(incidencia)
+def add_incidencia(description, num_hab, estado = False):
+    incidencia = {"Descripción": description, "Habitación": num_hab, "Estado":estado}
+    return incidencia
 
 
 #Recorrer lista incidencias para mostrarlas
 def mostrar_incidencias(lista):
-    for incidencias in lista:
+    for incidencias in list_incidencias:
         print(incidencias)
 
 #resolver una incidencia, quitarla de la lista y ponerla en otra pidiendo el número de habitación
-def resolver_incidencia (num):
+def resolver_incidencia (num_habitacion):
     for incidencia in list_incidencias:
-        if 
+        if num_habitacion == incidencia["Habitación"]:
+            incidencia["Estado"]= True
+            list_resueltas.append(incidencia)
+            list_incidencias.remove(incidencia)
+            print("Incidencia resuelta")
+            break
+    else:
+        print("No hay incidencias en esa habitación")
 
+
+while not salir:
+    opcion= int(input("""¡Buenas!
+        ¿Que quieres hacer?
+        1. Añadir incidencia
+        2. Ver incidencias
+        3. Resolver una incidencia
+        4. Ver incidencias resueltas
+        5. Salir
+        """))
+
+    if opcion == 1:
+        descripcion = input("Describe la Avería: ")
+        habitacion = input("Dime número de habitación: ")
+        incidencia = add_incidencia(descripcion, habitacion)
+        list_incidencias.append(incidencia)
+    elif opcion == 2:
+        mostrar_incidencias(list_incidencias)
+
+    elif opcion == 3:
+        room = int(input("¿Qué numero de habitación has arreglado"))
+        resolver_incidencia(room)
+
+    elif opcion == 4:
+        mostrar_incidencias(list_resueltas)
+
+    elif opcion == 5:
+        salir =True
+
+    else:
+        print("Esa opción no existe")
