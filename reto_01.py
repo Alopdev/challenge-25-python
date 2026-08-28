@@ -26,33 +26,31 @@ Elige una opción:
 #Gestor incidencia hotel
 
 
-#Crear una incidencia a modo diccionario y que se añada a una lista
-
-#Eliminar de la lista la incidencia realizada y pasarla a una lista nueva
-#salir 
-
+#Declaración de Variables y listas 
 list_incidencias = []
 list_resueltas =[]
 incidencia = {}
 salir = False
-#Pedir que quiere hacer el usuario y que escoja una opción
+id = 0
+
 
 
 #función para crear un diccionario de una incidencia
-def add_incidencia(description, num_hab, estado = False):
-    incidencia = {"Descripción": description, "Habitación": num_hab, "Estado":estado}
+def add_incidencia(id, description, num_hab, estado = False):
+    incidencia = {"ID" : id, "Descripción": description, "Habitación": num_hab, "Estado":estado}
     return incidencia
 
 
-#Recorrer lista incidencias para mostrarlas
-def mostrar_incidencias(lista):
-    for incidencias in list_incidencias:
+#Mostrar listado de incidencias y arreglos
+def mostrar_listado(lista):
+    for incidencias in lista:
         print(incidencias)
 
-#resolver una incidencia, quitarla de la lista y ponerla en otra pidiendo el número de habitación
-def resolver_incidencia (num_habitacion):
+
+#resolver incidencia y generando lista averías resueltas
+def resolver_incidencia (num_habitacion, identificador):
     for incidencia in list_incidencias:
-        if num_habitacion == incidencia["Habitación"]:
+        if num_habitacion == incidencia["Habitación"] and identificador == incidencia["ID"]:
             incidencia["Estado"]= True
             list_resueltas.append(incidencia)
             list_incidencias.remove(incidencia)
@@ -61,10 +59,11 @@ def resolver_incidencia (num_habitacion):
     else:
         print("No hay incidencias en esa habitación")
 
-
-while not salir:
-    opcion= int(input("""¡Buenas!
-        ¿Que quieres hacer?
+print("¡Bienvenido/a a tu aplicación de incidencias!")
+#Pedir que quiere hacer el usuario y que escoja una opción. No se sale hasta que el usuario lo escoja
+while not salir:#Hasta que esto no sea true el usuario sigue en la aplicacion
+    opcion= int(input("""
+        ¿Que quieres hacer ahora?
         1. Añadir incidencia
         2. Ver incidencias
         3. Resolver una incidencia
@@ -73,22 +72,27 @@ while not salir:
         """))
 
     if opcion == 1:
+        id +=1#Le doy un ID a cada incidencia para diferenciarlo por si hay dos averías misma habitación
         descripcion = input("Describe la Avería: ")
-        habitacion = input("Dime número de habitación: ")
-        incidencia = add_incidencia(descripcion, habitacion)
+        habitacion = int(input("Dime número de habitación: "))
+        incidencia = add_incidencia(id, descripcion, habitacion)
         list_incidencias.append(incidencia)
-    elif opcion == 2:
-        mostrar_incidencias(list_incidencias)
 
-    elif opcion == 3:
-        room = int(input("¿Qué numero de habitación has arreglado"))
-        resolver_incidencia(room)
+    elif opcion == 2:
+        mostrar_listado(list_incidencias)
+
+    elif opcion == 3:#Podría pedir únicamente el id pero queda como más seguro
+        room = int(input("¿Qué numero de habitación has arreglado? "))
+        identificador = int(input("¿Que ID de avería tiene?"))
+        resolver_incidencia(room, identificador)
 
     elif opcion == 4:
-        mostrar_incidencias(list_resueltas)
+        mostrar_listado(list_resueltas)
 
     elif opcion == 5:
+        #Al cambia de valor Salir, el programa sale del bucle
         salir =True
+        print("Hasta pronto")
 
     else:
         print("Esa opción no existe")
