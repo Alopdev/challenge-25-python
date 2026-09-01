@@ -24,11 +24,21 @@ def define_categoría():
         print("No existe esa categoría")
         define_categoría()
 
-cat = define_categoría()   
-print(cat)
 
-def add_gastos(descripcion, categoría, cantidad):
+def add_gastos():
     descripcion = input("Concepto de gasto: ")
-    categoría = define_categoría()
+    categoria = define_categoría()
     cantidad = int(input("Cantidad: "))
-    gasto = {"Decripción: ": descripcion, "Categoría: ": categoría, "Cantidad": cantidad}
+    gasto = {"Decripción: ": descripcion, "Categoría: ": categoria, "Cantidad": cantidad}
+    return(gasto)
+
+def gasto_mes(gasto):
+    mes = int("Introduce el mes en el que se ha producido el gasto (del 1 al 12): ")
+    if mes >=1 and mes <=12:
+        gasto_mes[mes-1].append(add_gastos)
+    else:
+        print("No existe ese mes")
+        gasto_mes()
+gastador = add_gastos()
+gasto_mes(gastador)
+print(gasto_mes[0])
