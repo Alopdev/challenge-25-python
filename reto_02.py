@@ -55,6 +55,7 @@ def create_gasto():
     gasto = add_gastos()
     gastos_mes[indice].append(gasto)
 
+#recorremos listas anidadas para mostrar lo gastos
 def mostrar_gasto():
     for gasto in gastos_mes:
        for gasto_mes in gasto:
@@ -63,10 +64,27 @@ def mostrar_gasto():
             Puesto en categoría {gasto_mes["Categoria"]}
             la cantidad de: {gasto_mes["Cantidad"]} Euros""")
 
+#Trabajo con lista anidada de nuevo para poder sumar gastos según categoría
+def mostrar_gasto_categoría():
+    for categoria in categorias:
+        sum_cat=0
+        for gasto in gastos_mes:
+            for gasto_mes in gasto:
+                if categoria == gasto_mes["Categoria"]:
+                    sum_cat+= gasto_mes["Cantidad"]
+        print(f"Gasto total categoría {categoria} {sum_cat} Euros")
 
 
-create_gasto()
-mostrar_gasto()
+#función para calcular gasto total recorriendo lista y accediendo al diccionario
+def gasto_total():
+    sum_total = 0
+    for gasto in gastos_mes:
+        for gasto_mes in gasto:
+            sum_total+= gasto_mes["Cantidad"]
+    return sum_total
+
+
+
 
 
 
