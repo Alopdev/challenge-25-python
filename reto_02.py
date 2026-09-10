@@ -16,6 +16,7 @@ gastos_mes = []
 gasto ={} #gasto sería un diccionario que tendría todos los gastos
 categorias = ["Ocio", "Hogar", "Banco", "Alimentación"]
 indice = 0
+exit = False
 
 #Lista vacía de 12 elementos
 for i in range(12):
@@ -82,6 +83,30 @@ def gasto_total():
         for gasto_mes in gasto:
             sum_total+= gasto_mes["Cantidad"]
     return sum_total
+
+while not exit:
+    option = int(input(""" 
+            Dime que quieres hacer:
+            1 Ver todos los gastos
+            2 Ver los gastos por categoria
+            3 Añadir un nuevo gasto
+            4 Salir de la aplicacion
+            """))
+    if option == 1:
+        print(f"El gasto total es {gasto_total()}")
+
+    elif option == 2:
+         mostrar_gasto_categoría()
+
+    elif option == 3:
+        create_gasto()
+
+    elif option == 4:
+        exit = True
+
+
+    
+
 
 
 
