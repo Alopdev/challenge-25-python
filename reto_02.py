@@ -10,8 +10,7 @@ Calcular cuánto has gastado en total.
 Calcular cuánto has gastado por categoría.
 Salir.
 
-Nivel: parecido al"""
-#meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12]
+"""
 gastos_mes = []
 gasto ={} #gasto sería un diccionario que tendría todos los gastos
 categorias = ["Ocio", "Hogar", "Banco", "Alimentación"]
@@ -84,6 +83,8 @@ def gasto_total():
             sum_total+= gasto_mes["Cantidad"]
     return sum_total
 
+
+#main de la app
 while not exit:
     option = int(input(""" 
             Dime que quieres hacer:
@@ -94,6 +95,8 @@ while not exit:
             """))
     if option == 1:
         print(f"El gasto total es {gasto_total()}")
+        print("Los gastos son: ")
+        mostrar_gasto()
 
     elif option == 2:
          mostrar_gasto_categoría()
