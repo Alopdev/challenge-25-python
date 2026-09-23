@@ -12,10 +12,35 @@ Buscar entrenamientos por tipo.
 Salir.
 
 Dificultad: un pequeño salto respecto al reto 2, sobre todo por trabajar mejor con datos relacionados entre sí."""
+type_train = ["Bici", "Carrera", "Natacion", "Gimnasio"]
+#funciones para simplificar función añadir entrenamiento
+def date_train():
+    print("Introduce la fecha del entrenamiento (DD/MM/YYYY)")
+    dia =int(input("Introduce el día: "))
+    mes = int(input("Introduce el mes: "))
+    anio= int(input("Introduce el año: "))
+    fecha = f"{dia:02d}/{mes:02d}/{anio}"
+    if (0 < dia and dia < 32) and (0 < mes and mes < 13):
+        return fecha
+    else:
+        print("Has puesto mal el mes o el día")
+        return(date_train())
+    
+
+def tipo_entrenamiento():
+    tipo = input("Tipo de entrenamiento: Bici, Carrera, Natacion o Gimnasio ")
+    if tipo.title() in type_train:
+        return tipo.title()
+    else:
+        print("Ese estrenamiento no existe ")
+        return(tipo_entrenamiento())
+
+
+
 
 #función para añdir el entrenamiento
-def add_train():
-    fecha =input("Introduce la fecha del entrenamiento DD/MM/YYYY: ")
+"""def add_train():
+    fecha =input("Introduce la fecha del entrenamiento DD/MM/YYYY: ")"""
     
 
 
