@@ -12,7 +12,10 @@ Buscar entrenamientos por tipo.
 Salir.
 
 Dificultad: un pequeño salto respecto al reto 2, sobre todo por trabajar mejor con datos relacionados entre sí."""
+
 type_train = ["Bici", "Carrera", "Natacion", "Gimnasio"]
+sesion = {}
+entrenamientos = []
 #funciones para simplificar función añadir entrenamiento
 def date_train():
     print("Introduce la fecha del entrenamiento (DD/MM/YYYY)")
@@ -35,12 +38,26 @@ def tipo_entrenamiento():
         print("Ese estrenamiento no existe ")
         return(tipo_entrenamiento())
 
+def duracion_entrenamiento():
+    tiempo = int(input("introduce el tiempo de entrenamiento en minutos "))
+    return tiempo
 
+def distancia_entrenamiento():
+    distancia = int(input("Introduce la distancia en metros "))
+    return distancia
 
 
 #función para añdir el entrenamiento
-"""def add_train():
-    fecha =input("Introduce la fecha del entrenamiento DD/MM/YYYY: ")"""
+def add_train():
+    fecha = date_train()
+    tipo = tipo_entrenamiento()
+    tiempo = duracion_entrenamiento()
+    distancia = distancia_entrenamiento()
+    sesion = {"Fecha": fecha, "Tipo": tipo, "Tiempo": tiempo, "Distancia": distancia}
+    entrenamientos.append(sesion)
+
+
+    
     
 
 
